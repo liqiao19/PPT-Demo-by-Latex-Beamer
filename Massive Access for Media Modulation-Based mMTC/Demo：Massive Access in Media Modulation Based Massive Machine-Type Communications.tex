@@ -1,0 +1,1318 @@
+\documentclass[9pt]{beamer}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage{color}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{mathdots}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{etoolbox}
+\usepackage{makecell}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{picinpar}
+\usepackage{subfigure}
+\usepackage{threeparttable}
+\setbeamertemplate{footline}[frame number]
+
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+\let \ul = \underline
+\let \ol = \overline
+\let \bd = \textbf
+\let \mbd = \mathbf
+\let \it = \textit
+\let \t  = \text
+\def \I#1{\frac{1}{#1}}
+\def \hypt{\begin{array}{c}H_1\\\gtrless\\H_0\end{array}}
+\def \p1#1{#1^{-1}}
+\def \c#1{#1^{\ast}}
+\def \~#1{\tilde{#1}}
+\def \Mf#1{\mathcal{#1}}
+\let \nn = \nonumber
+\def\Re#1{\t{Re}\left\{#1\right\}}
+\def\Im#1{\t{Im}\left\{#1\right\}}
+\def\LB{\left(}
+\def\RB{\right)}
+
+\def\LSB{\left[}
+\def\RSB{\right]}
+\def\LCB{\left\{}
+\def\RCB{\right\}}
+
+\mode<presentation> {
+  \usetheme{Madrid}
+%  \usetheme{boxes}
+%  \usetheme{Warsaw}
+  \setbeamercovered{transparent}
+%  \setbeamertemplate{footline}[frame number]
+}
+
+\AtBeginSection[]{%
+	\begin{frame}%
+		\frametitle{Outline}%
+		\textbf{\tableofcontents[currentsection]} %
+	\end{frame}%
+}
+
+\AtBeginSubsection[]{%
+	\begin{frame}%
+		\frametitle{Outline}%
+		\textbf{\tableofcontents[currentsection, currentsubsection]} %
+	\end{frame}%
+}
+
+%\setbeamertemplate{bibliography item}[text]
+
+\begin{document}
+\title[Li Qiao] %optional
+{Massive Access in Media Modulation Based Massive Machine-Type Communications}
+
+%\subtitle{A short story}
+
+\author[Beijing Institute of Technology] % (optional, for multiple authors)
+{Li Qiao, Jun Zhang, Zhen Gao, Derrick Wing Kwan Ng, Marco Di Renzo, and Mohamed-Slim Alouini}
+%{A.~B.~Arthur\inst{1} \and J.~Doe\inst{2}}
+
+%\institute[VFU] % (optional)
+%{
+%  \inst{1}%
+%  Faculty of Physics\\
+%  Very Famous University
+%  \and
+%  \inst{2}%
+%  Faculty of Chemistry\\
+%  Very Famous University
+%}
+
+\date{\today}
+
+%\date[VLC 2013] % (optional)
+%{Very Large Conference, April 2013}
+
+%\title
+%{Massive Access in Media Modulation Based Massive Machine-Type Communications}
+%\author{Li Qiao, Jun Zhang, Zhen Gao, Derrick Wing Kwan Ng, Marco Di Renzo, and Mohamed-Slim Alouini}
+%\date{\today}
+
+%\AtBeginSubsection[]
+%{
+%  \begin{frame}<beamer>
+%    \frametitle{Contents}
+%   \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+%}
+
+%\beamerdefaultoverlayspecification{<+->}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+	\vskip 2mm
+	\hfill	{\large \parbox{.95\textwidth}{\tableofcontents[hideothersubsections]}}
+\end{frame}
+
+\section{Introduction}
+\subsection{Introduction of mMTC}
+\begin{frame}
+\frametitle{Introduction of mMTC}
+\begin{itemize}
+\item
+The mMTC are characterized by uplink transmissions with short packets from massively deployed machine type devices (MTDs) whose data traffic is sporadic
+\item
+{\bf Grant-based approaches}
+\item
+Allocating orthogonal radio resources to different active MTDs via some sophisticated scheduling algorithms is necessary
+\item
+Prohibitive signaling overhead and latency, even the access congestion
+\item
+{\bf Grant-free approaches}
+\item
+MTDs can transmit in the uplink without waiting for permission
+\item
+Simplifies the uplink access procedure and hence reduces the access latency
+\item 
+The sporadic traffic characteristics of MTDs in mMTC motivates the application of compressive sensing (CS) techniques to tackle the challenging {\bf device activity and data detection} (DADD) problem.
+
+\end{itemize}
+\end{frame}
+
+\subsection{Introduction of Spatial Modulation}
+\begin{frame}
+\frametitle{Introduction of Spatial Modulation}
+\begin{itemize}
+\item
+Spatial modulation utilizes a single or fewer radio frequency (RF) chains than the number of antenna elements
+\item
+Part of the information bits are encoded onto the activated antenna elements to enhance the data rate
+\item
+Low-complexity and energy-efficient multiple-antenna scheme
+\item
+The application and suitability of spatial modulation for IoT is also discussed and proved experimentally
+\end{itemize}
+\end{frame}
+
+\subsection{Extensions of Spatial Modulation}
+\begin{frame}
+\frametitle{Extensions of Spatial Modulation}
+\begin{itemize}
+\item
+{\bf Extensions}
+\item
+Many progresses have been made in order to enhance the spectral efficiency of spatial modulation without compromising the low-complexity and energy-efficiency that originates from using a single-RF chain
+\item 
+Generalized spatial modulation, media modulation, and, more recently, metasurface-based modulation
+\item
+{\bf Media Modulation}
+\item
+We focus on {\bf media modulation}, which employs a single RF chain, a single radiating element, and several low-cost RF mirrors
+\item
+Information bits are encoded into the active/inactive (or ON/OFF) status of the RF mirrors, which determines the resulting radiation pattern of the entire structure
+\item
+In contrast to spatial modulation, the number of spatial bits encoded in media modulation is larger and depends on the number of distinguishable radiation patterns that can be realized
+\end{itemize}
+\end{frame}
+
+\subsection{Literature Review}
+\begin{frame}
+\frametitle{Literature Review}
+\begin{table}[!t]
+\centering
+\captionsetup{font = {normalsize, color = {black}}, labelsep = period} %, singlelinecheck = on, justification = raggedright
+\caption*{Table I: A brief comparison of the related literature}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+%\toprule
+\Xhline{1.2pt}
+\multicolumn{2}{|c|}{\diagbox{Contents}{Literature}} & [2]-[6] & [7] & [8] & [11] & [12]\\%
+%\midrule
+\Xhline{1.2pt}
+\multirow{2}*{BS}
+&Single antenna &\checkmark& & & & \\
+\cline{2-7}
+&mMIMO & & \checkmark& \checkmark & \checkmark &\checkmark\\
+\Xhline{1.2pt}
+\multirow{3}*{MTDs}
+&Single antenna&\checkmark& & & &\\
+\cline{2-7}
+&SM & & \checkmark& \checkmark &  &\\
+\cline{2-7}
+&Media modulation &  & & & \checkmark& \checkmark\\
+\Xhline{1.2pt}
+\multicolumn{2}{|c|}{AUD}&\checkmark & \checkmark&  &  &\\
+\Xhline{1.2pt}
+\multicolumn{2}{|c|}{Data detection}&\checkmark & \checkmark& \checkmark & \checkmark &\checkmark\\
+%\bottomrule
+\Xhline{1.2pt}
+\end{tabular}
+\end{table}
+%\begin{itemize}
+%\item SM
+%\end{itemize}
+\end{frame}
+
+\subsection{Our Contributions}
+\begin{frame}
+\frametitle{Our Contributions}
+\begin{itemize}
+\item
+{\bf Uncoded media modulation based mMTC}
+\item
+A doubly structured AMP (DS-AMP) algorithm was proposed for uncoded media modulation based mMTC
+\item
+We derive the theoretical state evolution (SE), which closely matches the simulated results of DS-AMP algorithm
+\item
+{\bf Coded media modulation based mMTC}
+\item
+{Bit-interleaved coded media modulation (BICMM) was designed for coded media modulation based mMTC}
+\item
+{Successive interference cancellation (SIC)-based iterative DS-AMP (IDS-AMP) scheme was developed for coded media modulation based mMTC, achieving improved the data decoding performance}
+\end{itemize}
+\end{frame}
+
+\section{System Model}
+%\subsection{Media Modulation Based mMTC Scheme}
+\begin{frame}
+\frametitle{Media Modulation Based mMTC Scheme}
+
+\begin{itemize}
+\item
+All $K$ MTDs employ media modulation for enhancing throughput and the BS employs mMIMO with $N_r\gg 1$ antenna elements for reliable massive access
+\item
+Only $K_a$ out of $K$ ($K\!\gg\!K_a$) MTDs are simultaneously active
+\item
+Each MTD is equipped with an RF chain, a transmit antenna, and $N_{\rm RF}$ low-cost RF mirrors
+\item
+Each device has $N_t=2^{N_{\rm RF}}$ different kinds of MAPs (i.e., $N_t$ different channel realizations), where ${\rm log_2}{N_t}=N_{\rm RF}$ extra information bits can be achieved 
+\end{itemize}
+
+\begin{figure}
+     \centering
+     \includegraphics[width=6cm,height=4.5cm, keepaspectratio]%
+     {Fig/MU-MIMO-MBM.eps}
+     %\vspace*{-2mm}
+     \captionsetup{font={footnotesize}, name={Fig. 1},labelsep=period}
+     \caption{For media modulation based mMTC scheme, MTDs adopt media modulation to access the mMIMO BS.}
+     \label{fig:1}
+     \vspace*{-5mm}
+\end{figure}
+\end{frame}
+
+%\subsection{Massive Access in Media Modulation Based mMTC}
+\begin{frame}
+\frametitle{Massive Access in Media Modulation Based mMTC}
+
+\begin{itemize}
+\item
+The received signal at the BS in the $j$-th, $\forall j\in [J]$, time slot, can be written as
+\begin{equation}\label{eq:system}
+\begin{split}
+{{\bf{y}}_{j}}&=\sum\limits_{k = 1}^K a_ks_{k,j}{{\bf{H}}_k{{\bf{d}}_{k,j}} + } {{\bf{w}}_{j}}
+=\sum\limits_{k = 1}^K {{\bf{H}}_k{{\bf{x}}_{k,j}} + } {{\bf{w}}_{j}}
+={\bf{{{H}}}}{{\bf{{\tilde{x}}}}_{j}} +  {{\bf{w}}_{j}},
+\end{split}
+\end{equation}
+\item
+The binary activity indicator $a_k\in\{0,1\}$ equals one (zero) as long as the $k$-th MTD is active (inactive)
+\item
+$s_{k,j}$ associated with the $k$-th MTD in the $j$-th time slot is selected from the $M$-QAM set $\mathbb{S}$
+\item
+${\bf d}_{k,j}\in\mathbb{C}^{N_t \times 1}$ is the media modulated symbol
+\item
+${\bf{x}}_{k,j}=a_k{s_{k,j}}{\bf d}_{k,j}\in\mathbb{C}^{N_t \times 1}$ is the effective uplink transmitted symbols
+\item
+${\bf{H}}_k\in\mathbb{C}^{N_r\times N_t}$ is the multiple input multiple output (MIMO) channel matrix associated with the $k$-th MTD
+\item
+${\bf{w}}^{j} \in \mathbb{C}^{N_r \times 1}$ is the Gaussian noise with its elements following the independent and identically distributed (i.i.d.) complex Gaussian distribution $\mathcal{CN}([{\bf{w}}^{j}]_n;0,\sigma_w^2)$
+\item
+${{\bf{ H}}} = [{\bf H} _1, {\bf H} _2,...,{\bf H} _K] \in \mathbb{C}^{N_r \times (K N_t)}$ and ${{\bf{\tilde x}}_{j} } = [({\bf x}_{1,j})^{ T},({\bf x}_{2,j})^{ T},...,({\bf x}_{K,j})^{ T}]^{ T} \in \mathbb{C}^{(K N_t) \times 1}$ are the aggregated channel matrix and uplink access signal, respectively
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Massive Access in Media Modulation Based mMTC}
+
+\begin{itemize}
+\item
+Due to the media modulation property, only one entry of the media modulated symbol ${\bf d}_{k,j}$, $\forall j\in[J]$ and $\forall k\in[K]$, equals one and the others are zeros, i.e.,
+\begin{equation}\label{eq:d}
+\begin{array}{l}
+{\rm supp}\left\{{\bf d}_{k,j}\right\}\in [N_t],~~\left\|{{{\bf d}_{k,j}}}\right\|_0=1,~~\left\|{{{\bf d}_{k,j}}}\right\|_2=1,
+\end{array}
+\vspace{-1mm}
+\end{equation}
+where ${\rm supp}\{{\bf d}_{k,j}\}$ denotes the support set of ${\bf d}_{k,j}$. We refer to this property as the {\it structured sparsity in the modulation domain}. 
+\end{itemize}
+
+\begin{figure}
+     \centering
+     \includegraphics[width=6cm,height=4.5cm, keepaspectratio]%
+     {Fig/signalmodel.eps}
+     %\vspace*{-2mm}
+     \captionsetup{font={footnotesize}, name={Fig. 2},labelsep=period}
+     \caption{We consider media modulation based mMTC with the slotted access frame structure, where the invariant active/inactive status of MTDs within a frame forms the {\it structured sparsity in the time domain}, and the media modulated symbols possess the {\it structured sparsity in the modulation domain}.}
+     \label{fig:2}
+     \vspace*{-5mm}
+\end{figure}
+\end{frame}
+
+\section{Proposed Solution for Uncoded Media Modulation Based mMTC}
+\begin{frame}
+\frametitle{Preliminaries}
+\begin{itemize}
+\item
+We introduce an activity indicator vector ${\bf a}=[a_1,a_2,...,a_K]^T\in\mathbb{C}^{K \times 1}$, which is sparse as the number of active MTDs $K_a=\left\|{{\bf a}}\right\|_0\ll K$
+\item
+We collectively refer to the {\it structured sparsity in the time domain} due to the slotted access frame structure and the {\it structured sparsity in the modulation domain} shown in (\ref{eq:d}) as the {\it doubly structured sparsity}
+\item
+To exploit the {\it structured sparsity in the time domain}, we rewrite the received signals of $J$ successive time slots as
+\begin{equation}\label{eq:systemModel}
+\begin{array}{l}
+\bf{Y}=\bf{ H}\bf{X}+\bf{W},
+\end{array}
+\end{equation}
+where we have ${\bf{Y}}\!=\![{\bf {y}}_{1}, {\bf {y}}_{2}, ..., {\bf {y}}_{J}]\in\mathbb{C}^{N_r \times J}$, ${{\bf{H}}}\in\mathbb{C}^{N_r \times (K N_t)}$, ${\bf{X}}\!=\![{{ {{\bf\tilde{x}}_{1}}}}, {{ {{\bf\tilde{x}}_{2}}}}, ..., {{{\bf \tilde {x}}_{J}}}]\in\mathbb{C}^{(K N_t) \times J}$,
+and ${\bf{W}}=[{{ {{\bf{w}}_{1}}}}, {{ {{\bf{w}}_{2}}}}, ..., {{{\bf {w}}_{J}}}]\in\mathbb{C}^{N_r \times J}$.
+\item
+The massive access problem can be formulated as the following optimization problem
+\begin{equation}\label{eq:OPTproblem}
+\begin{split}
+\min\limits_{\bf X} \left\|{ {\bf Y}-{\bf HX}}\right\|_F^2&=\min\limits_{\{{\bf \tilde x}_{j}\}_{j=1}^{J}}\sum\limits_{j=1}^J\left\|{ {\bf y}_j-{\bf  H}{\bf \tilde x}_j}\right\|_2^2\\
+&=\min\limits_{\{a_k,{\bf d}_{k,j},s_{k,j}\}_{j=1,k=1}^{J,K}} \,\, \sum\limits_{j=1}^J\left\|{ {\bf y}_j-\sum\limits_{k = 1}^K a_k s_{k,j} {\bf H}_k{\bf d}_{k,j}}\right\|_2^2\\
+{\rm s.t.}~(2),~\left\|{\bf a}\right\|_0\ll &K,~{\rm and}~s_{k,j}\in\mathbb{S}, k\in[K],j\in[J].
+\end{split}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\subsection{Proposed DS-AMP Algorithm for DADD}
+\begin{frame}
+\frametitle{Problem Formulation Based on Factor Graph}
+\begin{itemize}
+\item
+Minimizing the mean square error between ${\bf Y}$ and ${\bf HX}$ is equivalent to estimating the {\it a posteriori} mean of the uplink access signal ${\bf X}$
+\item
+The {\it a posteriori} mean of $\left[{{\bf x}_{k,j}}\right]_i$, $\forall k\in[K]$, $\forall j\in[J]$, $\forall i\in[N_t]$, can be expressed as
+\begin{equation}\label{eq:PosMeanGeneral}
+\begin{array}{l}
+\left[{\widehat{\bf x}_{k,j}}\right]_i=\sum\limits_{\left[{{\bf x}_{k,j}}\right]_i\in \mathbb{\overline S}}\left[{{\bf x}_{k,j}}\right]_i p\left({\left[{{\bf x}_{k,j}}\right]_i|{\bf y}_j}\right),
+\end{array}
+\end{equation}
+where $\mathbb{\overline S}=\left\{{\mathbb{S},0}\right\}$, $p\left({\left[{{\bf x}_{k,j}}\right]_i|{\bf y}_j}\right)$ is the marginal distribution of $p\left({\tilde{\bf x}_j|{\bf y}_j}\right)$ and it can be expressed as
+\begin{equation}\label{eq:MarginalGenaral}
+\begin{array}{l}
+p\left({\left[{{\bf x}_{k,j}}\right]_i|{\bf y}_j}\right)=\sum\limits_{\sim\left\{{\left[{{\bf x}_{k,j}}\right]_i}\right\}} p\left({\tilde{\bf x}_j|{\bf y}_j}\right).
+\end{array}
+\end{equation}
+\item
+Based on the Bayes' theorem, the joint posterior distribution $p\left({\tilde{\bf x}_j|{\bf y}_j}\right)$ can be expressed as
+\begin{equation}\label{eq:PosDistriGeneral}
+\begin{split}
+p\left({\tilde{\bf x}_j|{\bf y}_j;\sigma_w^2, {\bf a}}\right)=\dfrac{p\left({{\bf y}_j|\tilde{\bf x}_j;\sigma_w^2}\right)p\left({\tilde{\bf x}_j;{\bf a}}\right)}{p\left({{\bf y}_j}\right)}
+=\dfrac{1}{p\left({{\bf y}_j}\right)} \prod\limits_{n=1}^{N_r}p\left({\left[{{\bf y}_j}\right]_n|\tilde{\bf x}_j;\sigma_w^2}\right) \prod\limits_{k=1}^{K}p\left({{\bf x}_{k,j}; a_k}\right),\\
+\end{split}
+\end{equation}
+where the likelihood function can be expressed as
+\begin{equation}\label{eq:LikelihoodGeneral}
+\begin{array}{l}
+p\left({\left[{{\bf y}_j}\right]_n|\tilde{\bf x}_j;\sigma_w^2}\right)=\dfrac{1}{\pi \sigma_w^2}{\rm exp}\left({-\dfrac{1}{\sigma_w^2}\left| {\left[{{\bf y}_j}\right]_n-\sum\limits_{k=1}^{K}\left[{{\bf H}_k{\bf x}_{k,j}}\right]_n} \right|^2}\right).
+\end{array}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Problem Formulation Based on Factor Graph}
+\begin{itemize}
+\item
+According to the {\it structured sparsity in the modulation domain} and the discrete distribution of QAM alphabet, the {\it a prior} distribution $p\left({{\bf x}_{k,j}; a_k}\right)$ in (\ref{eq:PosDistriGeneral}) is formulated as
+\begin{equation}\label{eq:PriorGeneral}
+\begin{array}{l}
+p\left({{\bf x}_{k,j}; a_k}\right)=(1-a_k)\prod\limits_{i=1}^{N_t}\delta\left({\left[{{\bf x}_{k,j}}\right]_i}\right)+\\
+~~~~~~~~~~~~~~~a_k\left\{{\dfrac{1}{N_t}\sum\limits_{i=1}^{N_t}\left[{\dfrac{1}{M}\sum\limits_{s\in\mathbb{S}}\delta\left({\left[{{\bf x}_{k,j}}\right]_i-s}\right)\prod\limits_{g\in [N_t],g\neq i}\delta\left({\left[{{\bf x}_{k,j}}\right]_g}\right)}\right]}\right\},
+\end{array}
+\end{equation}
+where $M=|\mathbb{S}|_c$ and $\delta\left({\cdot}\right)$ is the Dirac delta function.
+\end{itemize}
+\begin{figure}[h]
+     \centering
+     \includegraphics[width=4.5cm, keepaspectratio]%,height=6.5cm
+     {Fig/FactorGraph.eps}
+     \vspace*{2mm}
+     \captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={Fig. 3},labelsep=period}
+     \caption{Factor graph of the joint posterior distribution $p\left({\tilde{\bf x}_j|{\bf y}_j;\sigma_w^2, {\bf a}}\right)$. The circles represent variable nodes and the squares represent factor nodes.}
+     \label{fig:FactorGraph}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Problem Formulation Based on Factor Graph}
+\begin{itemize}
+\item
+However, calculating the marginal distribution $p\left({\left[{{\bf x}_{k,j}}\right]_i|{\bf y}_j}\right)$, $\forall k\in[K]$, $\forall j\in[J]$, and $\forall i\in[N_t]$, from the joint posterior distribution $p\left({\tilde{\bf x}_j|{\bf y}_j;\sigma_w^2, {\bf a}}\right)$ is extremely complicated in massive access, due to the exceedingly large value of $K$.
+\item
+Fortunately, AMP can provide an effective approximation of the marginal distributions with a lower complexity, yet achieving the near MMSE performance.
+\item
+The DS-AMP algorithm is proposed for handling such a massive access problem
+\item
+We apply the DS-AMP algorithm to calculate the {\it a posteriori} mean of media modulated signals ${\bf x}_{k,j}$ ($k\in[K]$, $j\in[J]$), and resort to the EM algorithm for estimating the activity indicators $a_k$ as well as the variance $\sigma_w^2$ of the complex Gaussian noise.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Update Rules of DS-AMP Algorithm}
+\begin{itemize}
+\item
+AMP decouples the matrix estimation problem of (\ref{eq:systemModel}) into $KJN_t$ uncoupled scalar problems in the asymptotic regime, i.e.,
+\begin{equation}\label{eq:systemdecoupled}
+\begin{array}{l}
+{\bf{Y}=\bf{ H}\bf{X}+{\bf{W}}}~\rightarrow~r_{l,j}=\left[{{\bf x}_{k,j}}\right]_i+\widehat{w}_{l,j},~\forall i,j,k,
+\end{array}
+\end{equation}
+where $l=(k-1)N_t+i$, $r_{l,j}$ is the mean of $\left[{{\bf x}_{k,j}}\right]_i$ estimated by AMP algorithm, $\widehat{w}_{l,j}\sim{\cal C}{\cal N}\left({{\widehat{w}_{l,j};0,\phi_{l,j}}}\right)$ is the equivalent noise, and $\phi_{l,j}$ is its variance.
+\item 
+The joint posterior distribution (\ref{eq:PosDistriGeneral}) can be approximated as
+%\begin{equation}
+%\begin{array}{l}
+\begin{align}
+\label{eq:PosDistriApproxi}p\left({\tilde{\bf x}_j|{\bf y}_j;\sigma_w^2, {\bf a}}\right)\approx q\left({\tilde{\bf x}_j|{\bf y}_j;\sigma_w^2, {\bf a}}\right)
+=\prod\limits_{k=1}^{K}\prod\limits_{i=1}^{N_t}q\left({\left[{{\bf x}_{k,j}}\right]_i|r_{l,j}, \phi_{l,j};\sigma_w^2, a_k}\right).
+%\end{array}
+\end{align}
+\item
+Based on the Bayes' theorem, the approximated marginal {\it a posteriori} distribution, denoted as $q\left({\left[{{\bf x}_{k,j}}\right]_i|r_{l,j}, \phi_{l,j};\sigma_w^2, a_k}\right)$, $\forall i,j,k$, is given as follows
+\begin{equation}\label{eq:PosMarginalAMP}
+\begin{array}{l}
+q\left({\left[{{\bf x}_{k,j}}\right]_i|r_{l,j}, \phi_{l,j};\sigma_w^2, a_k}\right)
+=\dfrac{q\left({r_{l,j}|\left[{{\bf x}_{k,j}}\right]_i;\sigma_w^2}\right)~p\left({\left[{{\bf x}_{k,j}}\right]_i;a_k}\right)}{q\left({r_{l,j};\sigma_w^2, a_k}\right)},
+\end{array}
+\end{equation}
+where
+%\nonumber
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Update Rules of DS-AMP Algorithm}
+\begin{align}
+\label{eq:LikelihoodAMP} q\left({r_{l,j}|\left[{{\bf x}_{k,j}}\right]_i}\right)&=\dfrac{1}{\pi\phi_{l,j}}{\rm exp}\left({-\dfrac{1}{\phi_{l,j}}\left|{r_{l,j}-\left[{{\bf x}_{k,j}}\right]_i}\right|^2}\right),\\
+\label{eq:PriorMarginal} p\left({\left[{{\bf x}_{k,j}}\right]_i;a_k}\right)&=\sum\limits_{\sim\left\{{\left[{{\bf x}_{k,j}}\right]_i}\right\}} p\left({{\bf x}_{k,j};a_k}\right)\nonumber\\
+&=\left({1-\dfrac{a_k}{N_t}}\right)\delta\left({\left[{{\bf x}_{k,j}}\right]_i}\right)+\dfrac{a_k}{N_tM}\sum\limits_{s\in\mathbb{S}}\delta\left({\left[{{\bf x}_{k,j}}\right]_i-s}\right),\\
+\label{eq:NormulizeItem} q\left({r_{l,j};\sigma_w^2, a_k}\right)&=\!\!\sum\limits_{\left[{{\bf x}_{k,j}}\right]_i\in\mathbb{\overline S}}\!\!q\left({r_{l,j}|\left[{{\bf x}_{k,j}}\right]_i;\sigma_w^2}\right)~p\left({\left[{{\bf x}_{k,j}}\right]_i;a_k}\right).
+\end{align}
+\begin{itemize}
+\item
+Then, the {\it a posteriori} mean and variance of $\left[{{\bf x}_{k,j}}\right]_i$, $\forall i,j,k$, are respectively given as
+\begin{align}
+\label{eq:postmeanAMP} {\left[{\widehat{\bf x}_{k,j}}\right]_i}&=f_m\left({r_{l,j},\phi_{l,j}}\right)
+=\sum\limits_{\left[{{\bf x}_{k,j}}\right]_i\in\mathbb{\overline S}}\left[{{\bf x}_{k,j}}\right]_i~q\left({\left[{{\bf x}_{k,j}}\right]_i|r_{l,j}, \phi_{l,j};\sigma_w^2, a_k}\right),\\
+\label{eq:postvarAMP}{\left[{{\widehat{\bf v}}_{k,j}}\right]_i}&=f_v\left({r_{l,j},\phi_{l,j}}\right)
+=\!-\left|{\left[{\widehat{{\bf x}}_{k,j}}\right]_i}\right|^2+\sum\limits_{\left[{{\bf x}_{k,j}}\right]_i\in\mathbb{\overline S}}\!\!\left|{\left[{{\bf x}_{k,j}}\right]_i}\right|^2q\left({\left[{{\bf x}_{k,j}}\right]_i|r_{l,j}, \phi_{l,j};\sigma_w^2, a_k}\right),
+\end{align}
+where $l=(k-1)N_t+i$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Update Rules of DS-AMP Algorithm}
+\begin{itemize}
+\item
+Note that $r_{l,j}$, $\phi_{l,j}$, $\widehat{{\bf x} }_{k,j}$, and $\widehat{{\bf v} }_{k,j}$ are updated iteratively in the AMP algorithm. 
+\item
+In the factor graph in Fig. \ref{fig:FactorGraph}, $r_{l,j}$ and $\phi_{l,j}$, $\forall l,j$, are updated iteratively at the variable nodes. The update rules in the $t$-th iteration are expressed as
+\begin{align}
+\label{eq:UpdateSigma} \phi_{l,j}^t&=\left({\sum\limits_{n=1}^{N_r}\dfrac{\left|{\bf H}_{[n,l]}\right|^2}{\sigma_w^2+V_{n,j}^{t}}}\right)^{-1},\\
+\label{eq:UpdateR} r_{l,j}^t&=\left[{\widehat{{\bf x}}_{k,j}^t}\right]_i+\phi_{l,j}^t\sum\limits_{n=1}^{N_r}\dfrac{{\bf H}^*_{[n,l]}\left({\left[{{\bf y}_j}\right]_n-Z_{n,j}^t}\right)}{\sigma_w^2+V_{n,j}^{t}},
+\end{align}
+\item
+$V_{n,j}^{t}$ and $Z_{n,j}^t$, $\forall n,j$, are updated at the factor nodes of the factor graph as
+\begin{align}
+\label{eq:UpdateV} V_{n,j}^t&=\sum\limits_{k=1}^K\left|{{\bf H}_k}_{[{n,:}]}\right|^2\widehat{{\bf v} }_{k,j}^t,\\
+\label{eq:UpdateZ} Z_{n,j}^t&=\sum\limits_{k=1}^K{{\bf H}_k}_{[{n,:}]}\widehat{{\bf x} }_{k,j}^t-V_{n,j}^t\dfrac{\left[{{\bf y}_j}\right]_n-Z_{n,j}^{t-1}}{\sigma_w^2+V_{n,j}^{t-1}}.
+\end{align}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Parameters Estimation}
+\begin{itemize}
+\item
+The EM algorithm is an iterative approach to find the maximum likelihood solutions for probabilistic models with the unknown parameters
+\item
+Define ${\bm \theta}=\left\{{\sigma_w^2, a_k, k\in[K]}\right\}$, EM algorithm updates the parameter set ${\bm \theta}$ as follows
+\begin{align}
+\label{eq:EM1} Q\left({{\bm \theta},{\bm \theta}^t}\right)&=\mathbb{E}\left\{{{\rm ln}~p\left({{\bf X, Y;{\bm \theta}}}\right)|{\bf Y};{\bm \theta}^t}\right\},\\
+\label{eq:EM2} {\bm \theta}^{t+1}&={\rm arg}\max\limits_{{\bm \theta}}Q\left({{\bm \theta},{\bm \theta}^t}\right),
+\end{align}
+where ${\bm \theta}^t$ is the parameter set estimated in the $t$-th iteration, $\mathbb{E}\left\{{\cdot|{\bf Y};{\bm \theta}^t}\right\}$ denotes the expectation conditioned on the received signal ${\bf Y}$ under ${\bm \theta}^t$.
+\item
+The update rules of the noise variance $\sigma_w^2$ and the activity indicator $a_k$, $\forall k$, as follows
+\begin{align}
+\label{eq:EMnoiseVar}\left({\sigma_w^2}\right)^{t+1}&=\dfrac{1}{JN_r}\sum\limits_{j=1}^{J}\sum\limits_{n=1}^{N_r}\left[{\dfrac{\left({\left[{{\bf y}_j}\right]_n-Z_{n,j}^t}\right)^2}{\left({1+\frac{V_{n,j}^t}{\left({\sigma_w^2}\right)^t}}\right)^2}+\dfrac{\left({\sigma_w^2}\right)^t V_{n,j}^t}{V_{n,j}^t+\left({\sigma_w^2}\right)^t}}\right],\\
+\label{eq:EMactivityIndica} a_k^{t+1}&=f_a\left({r_{l,j}^t,\phi_{l,j}^t;a_k^t}\right)
+=\dfrac{1}{J}\sum\limits_{j=1}^{J}\sum\limits_{{\bf x}_{k,j}\in \Gamma_0}\prod\limits_{i=1}^{N_t}q\left({\left[{{\bf x}_{k,j}}\right]_i|r_{l,j}^t, \phi_{l,j}^t;a_k^t}\right),
+\end{align}
+where $l=(k-1)N_t+i$ and $\Gamma_0$ is the set of all possible ${\bf x}_{k,j}$ when the $k$-th MTD is active
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Arithmetic Flow of the Proposed DS-AMP Algorithm}
+\begin{figure}[h]
+     \centering
+     \includegraphics[width=11cm, keepaspectratio]%,height=6.5cm
+     {Fig/Algo1.eps}
+     \vspace*{-4mm}
+     \captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={},labelsep=period}
+     \caption{}
+     \label{fig:FactorGraph}
+\end{figure}
+\end{frame}
+
+\subsection{State Evolution of DS-AMP Algorithm}
+\begin{frame}
+\frametitle{State Evolution of DS-AMP Algorithm}
+\begin{itemize}
+\item
+SE is a tool for analyzing the performance of AMP algorithms in the large system limit, i.e., $KN_t\rightarrow \infty$, by tracking the mean-square errors (MSE) of each iteration
+\item
+To start with, the MSE and average variance are respectively defined as
+\begin{align}
+\label{eq:SEMSE} e^t&=\dfrac{1}{KJN_t}\sum\limits_{k=1}^{K}\sum\limits_{j=1}^{J}\sum\limits_{i=1}^{N_t}\left|{[\widehat{\bf x}_{k,j}^t]_i-[{\bf x}_{k,j}]_i}\right|^2,\\
+\label{eq:SEVariance} v^t&=\dfrac{1}{KJN_t}\sum\limits_{k=1}^{K}\sum\limits_{j=1}^{J}\sum\limits_{i=1}^{N_t}[\widehat{\bf v}_{k,j}^t]_i,
+\end{align}
+\item
+In large system limit and the elements of the measurement matrix obey the i.i.d. distribution with zero mean and variance $\gamma$, the value of $r_0^t$ in SE can be expressed as
+\begin{equation}\label{eq:SEupdateR}
+\begin{array}{l}
+r_0^t=x_0+\sqrt{\dfrac{\sigma_w^2+\gamma K N_t e^t}{N_r\gamma}}z,
+\end{array}
+\end{equation}
+where $x_0$ is a realization of $X_0$, $z\sim{\cal C}{\cal N}(z;0,1)$,
+and the quantity of $\phi_0^t$ in SE can be shown as
+\begin{equation}\label{eq:SEupdateSigma}
+\begin{array}{l}
+\phi_0^t\approx \dfrac{\sigma_w^2+\gamma KN_t v^t}{N_r\gamma}.
+\end{array}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{State Evolution of DS-AMP Algorithm}
+\begin{itemize}
+\item
+The MSE and the average variance in the $(t+1)$-th iteration can be expressed as
+\begin{align}
+\label{eq:SEMSEUpdate} e^{t+1}&=\int dx_0p_0(x_0)\int{\cal D}z\left|{f_m(r_0^t,\phi_0^t)-x_0}\right|^2,\\
+\label{eq:SEVarianceUpdate} v^{t+1}&=\int dx_0p_0(x_0)\int{\cal D}zf_v(r_0^t,\phi_0^t),
+\end{align}
+where $p_0(x_0)$ is the {\it a prior} distribution as indicated in (\ref{eq:PriorMarginal}), ${\cal D}z=e^{-|z|^2}/\pi dz$, $f_m(r_0^t,\phi_0^t)$ and $f_v(r_0^t,\phi_0^t)$ are defined in (\ref{eq:postmeanAMP}) and (\ref{eq:postvarAMP}), respectively
+\item
+Monte Carlo simulations are adopted to generate a large number of realizations of the transmit signals, where the sporadic traffic and the doubly structured sparsity are fully embodied
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{State Evolution of DS-AMP Algorithm}
+\begin{figure}[h]
+     \centering
+     \includegraphics[width=12cm, keepaspectratio]%,height=6.5cm
+     {Fig/Algo2.eps}
+     \vspace*{-4mm}
+     \captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={},labelsep=period}
+     \caption{}
+     \label{fig:FactorGraph}
+\end{figure}
+\end{frame}
+
+\subsection{Computational Complexity of DS-AMP Algorithm}
+\begin{frame}
+\frametitle{Computational Complexity of DS-AMP Algorithm}
+\begin{itemize}
+\item
+The computational complexity of the proposed DS-AMP algorithm mainly arises from the complex-valued matrix multiplications of the following operations in each iteration
+\item
+{\bf AMP decoupling step}: The complexity of performing the AMP decoupling step, i.e., (\ref{eq:UpdateSigma})$-$(\ref{eq:UpdateZ}), is $\mathcal{O}(\frac{5}{2}JKN_tN_r)$
+\item
+{\bf AMP denoising step}: The complexity of performing the AMP denoising step, i.e., (\ref{eq:NormulizeItem})$-$(\ref{eq:postvarAMP}), is $\mathcal{O}\left[{JKN_t(|\mathbb{S}|_c+\frac{1}{4})}\right]$
+\item
+Simulation results demonstrate that the predefined maximum iteration number $T_0$ can be small to guarantee the convergence of the proposed DS-AMP algorithm. Hence the overall complexity is on the order of ${\cal O}\left[{T_0JKN_t(\frac{5}{2}N_r+|\mathbb{S}|_c+\frac{1}{4})}\right]$, which scales linearly with the number of MTDs, the number of MAPs in media modulation, the order of QAM modulation, and the number of receive antennas at the BS
+\item
+This linear complexity is appealing for efficiently processing the massive access of future IoT
+\end{itemize}
+\end{frame}
+
+\section{Proposed Solution for Coded Media Modulation Based mMTC}
+\subsection{Dedicated Data Packet Structure and BICMM at MTDs}
+\begin{frame}
+\frametitle{Dedicated Data Packet Structure and BICMM at MTDs}
+\begin{itemize}
+\item
+{\bf Data Packet Structure}
+\item
+The proposed data packet structure is dedicated for the implementation of an SIC-based IDS-AMP detector at the receiver
+\item
+Specifically, the data packet is composed of two parts, including the former $L_s$-bit signature sequence part and the following $L_d$-bit payload data
+\item
+We consider that all the MTDs share the same binary signature sequence ${\bf b}_s\in \mathbb{N}^{L_s\times 1}$, which is a pre-defined pseudo-random 0/1 sequence known at the transceiver
+\item
+At the receiver, we consider the Hamming distance $D({\bf b}_s,\widehat{\bf b}_s)$ between ${\bf b}_s$ and $\widehat{\bf b}_s$ as a metric to evaluate the decoding quality of the associated MTD's payload data part, where $\widehat{\bf b}_s\in \mathbb{N}^{L_s\times 1}$ is the estimated binary signature sequence of any detected MTD
+\item
+As a result, the error propagation in the SIC processing can be mitigated with the aid of the proposed signature sequence
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dedicated Data Packet Structure and BICMM at MTDs}
+\begin{itemize}
+\item
+{\bf BICMM}
+\item
+The BICMM scheme includes an encoder, a bit-wise interleaver, and a media modulation module
+\item
+Specifically, after the channel coding, the length of one data packet is expanded from $L$ bits to $L'$ bits, and then this $L'$-bit data packet is delivered to the following bit-wise interleaver module
+\item
+We consider a {\bf block interleaver} with $\eta$ columns by $J=L'/\eta$ rows, and the $L'$-bit data packet is read into the interleaver by rows and read out by columns
+\item
+Every $\eta$ bits of the interleaved $L'$-bit data packet are sequentially modulated into $J$ media modulation symbols and are transmitted in $J$ successive time slots (i.e., a frame)
+\item
+The bit-wise interleaver module can provide the diversity to overcome the dramatic spatial-selective fading channels of media modulation for improving data decoding performance
+\item
+This interleaver module is different from the interleaver used in the channel coding (e.g., Turbo coding), where the latter is designed for AWGN channels rather than spatial-selective fading channels
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dedicated Data Packet Structure and BICMM at MTDs}
+\begin{figure}[h]
+     \centering
+     \includegraphics[width=12cm, keepaspectratio]%
+     {Fig/DiagramCoded_BS_enhanced_v3.eps}
+     \captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright, name={Fig. 4},labelsep=period}
+     \caption{Communication process of the proposed massive access solution for coded media modulation based mMTC.}
+     \label{fig:Communication}
+     \vspace*{-3mm}
+\end{figure}
+\end{frame}
+
+\subsection{Proposed IDS-AMP Detector at the BS}
+\begin{frame}
+\frametitle{Proposed IDS-AMP Detector at the BS}
+The proposed IDS-AMP detector has 8 modules, including
+\begin{itemize}
+\item
+{\bf DS-AMP algorithm module}
+\item
+{\bf LLR calculation module}
+\item
+{\bf A deinterleaver}
+\item
+{\bf A soft decoder}
+\item
+{\bf Decoding quality judgement module}
+\item
+{\bf An encoder} \{For signals reconstruction\}
+\item
+{\bf An interleaver} \{For signals reconstruction\}
+\item
+{\bf Interference cancellation module}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proposed IDS-AMP Detector at the BS}
+\begin{figure}[h]
+     \centering
+     \includegraphics[width=12cm, keepaspectratio]%
+     {Fig/DiagramCoded_BS_enhanced_v3.eps}
+     \captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright, name={Fig. 4},labelsep=period}
+     \caption{Communication process of the proposed massive access solution for coded media modulation based mMTC.}
+     \label{fig:Communication}
+     \vspace*{-3mm}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proposed IDS-AMP Detector at the BS}
+\begin{itemize}
+\item
+{\bf DS-AMP algorithm module}
+\item
+We obtain the approximated {\it a posteriori} distribution $q\left({{\bf x}_{k,j}|{\bf y}_j;\sigma_w^2,a_k}\right)$, $\forall k,j$, and the activity indicator vector $\widehat{\bf a}=[\widehat{a}_1,...,\widehat{a}_K]^T$, which can be acquired by calling the DS-AMP algorithm
+\item
+If the iteration index $i=0$, we acquire the indices of active MTDs detected, denoted as $\Omega_0$
+\item
+Meanwhile, the index set of MTDs remaining to be iteratively decoded, denoted as $\Omega_1$, is assigned to be equivalent to $\Omega_0$ in the first iteration (i.e., the iteration index $i=0$) and will be updated in the following SIC.
+\item
+We update the iteration index $i=i+1$, and then select the $\overline{N}$ MTDs most likely to be active based on the quantities of activity indicators for the following SIC, where these $\overline{N}$ MTDs' index set is denoted as $\Omega_2\!\!=\!\!\Theta([\widehat{\bf a}]_{\Omega_1},\!\overline{N})$ 
+\item
+If $\left|{\Omega_1}\right|_c$ is smaller than the predefined constant $\overline{N}$, let $\Omega_2=\Omega_1$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proposed IDS-AMP Detector at the BS}
+\begin{itemize}
+\item
+{\bf LLR calculation module}
+\item
+For any media modulation symbol ${\bf x}_{k,j}$, $\forall k,j$, the LLR of the associated media modulated bit $B_{k,j,b}^{\rm MED}$, $\forall b\in[{\rm log}_2N_t]$, and the LLR of the associated $M$-QAM bit $B_{k,j,d}^{\rm QAM}$, $\forall d\in[{\rm log}_2M]$, can be respectively expressed as
+\begin{align}
+\label{eq:LLR1}{\rm LLR}\left({B_{k,j,b}^{\rm MED}}\right)&={\rm log}\dfrac {\sum\nolimits_{{\bf x}_{k,j}\in\Phi_0^{b}} q\left({{\bf x}_{k,j}|{\bf y}_j;\sigma_w^2,a_k}\right)}{\sum\nolimits_{{\bf x}_{k,j}\in\Phi_1^{b}}q\left({{\bf x}_{k,j}|{\bf y}_j;\sigma_w^2,a_k}\right)},\\
+\label{eq:LLR2}{\rm LLR}\left({B_{k,j,d}^{\rm QAM}}\right)&={\rm log}\dfrac {\sum\nolimits_{{\bf x}_{k,j}\in\Psi_0^{d}} q\left({{\bf x}_{k,j}|{\bf y}_j;\sigma_w^2,a_k}\right)}{\sum\nolimits_{{\bf x}_{k,j}\in\Psi_1^{d}}q\left({{\bf x}_{k,j}|{\bf y}_j;\sigma_w^2,a_k}\right)},
+\end{align}
+where $\Phi_0^b$ ($\Phi_1^b$) is the set of ${\bf x}_{k,j}$ for which the media modulated bit $B_{k,j,b}^{\rm MED}$, $\forall b$, equals zero (one), and $\Psi_0^d$ ($\Psi_1^d$) is the set of ${\bf x}_{k,j}$ for which the $M$-QAM bit $B_{k,j,d}^{\rm QAM}$, $\forall d$, equals zero (one)
+\item
+For example, supposing that $N_t=2$, $M=2$, $\mathbb{S}=\{+1,-1\}$, $b\in[1]$, and $d\in[1]$, then we can get
+\begin{equation}\label{eq:examplePhi}
+\Phi_0^1 = {\left\{ {\left[ {\begin{array}{*{10}{c}}
++1\\
+0
+\end{array}} \right],\left[ {\begin{array}{*{10}{c}}
+-1\\
+0
+\end{array}} \right]} \right\}},
+\Phi_1^1 = {\left\{ {\left[ {\begin{array}{*{10}{c}}
+0\\
++1
+\end{array}} \right],\left[ {\begin{array}{*{10}{c}}
+0\\
+-1
+\end{array}} \right]} \right\}},
+\end{equation}
+
+\begin{equation}\label{eq:examplePsi}
+\Psi_0^1 = {\left\{ {\left[ {\begin{array}{*{10}{c}}
++1\\
+0
+\end{array}} \right],\left[ {\begin{array}{*{10}{c}}
+0\\
++1
+\end{array}} \right]} \right\}},
+\Psi_1^1 = {\left\{ {\left[ {\begin{array}{*{10}{c}}
+-1\\
+0
+\end{array}} \right],\left[ {\begin{array}{*{10}{c}}
+0\\
+-1
+\end{array}} \right]} \right\}}.
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proposed IDS-AMP Detector at the BS}
+\begin{itemize}
+\item
+{\bf Deinterleaver and soft decoder modules}
+\item
+Firstly, the LLR information of MTDs with indices in $\Omega_2$ is respectively deinterleaved
+\item
+Secondly, for each MTD with indices in $\Omega_2$, the soft decoder decodes the deinterleaved LLR information to get the data packet of $L_s+L_d$ bits
+\item
+{\bf Decoding quality judgement module}
+\item
+Firstly, for each MTD with its index $\Omega_2|_{\overline{n}}$, $\forall \overline{n}\in[|\Omega_2|_c]$, we calculate the Hamming distances between the decoded signature sequence and the true signature sequence
+\item
+Based on the Hamming distances recorded, whether and how to perform the SIC processing will be judged
+\item
+If none of the Hamming distances equals zero, we skip the interference cancellation module, then decode the remaining MTDs indexed by $\{\Omega_1\setminus\Omega_2\}$
+\item
+If there exist zero Hamming distance, it indicates there is one or several MTDs with almost perfect decoding quality. we extract those well decoded MTDs, whose index set is denoted as $\Omega_3$, and continue to perform the following signals reconstruction module and interference cancellation module
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proposed IDS-AMP Detector at the BS}
+\begin{itemize}
+\item
+{\bf Signals reconstruction module}
+\item
+For each MTD with indices in $\Omega_3$, to reconstruct the signal components, we sequentially perform encoding, interleaving, and media modulation (i.e., repeat the BICMM scheme at MTD) according to the decoded bits
+\item
+{\bf Interference cancellation module}
+\item
+Firstly, we subtract the signal components $\hat{\bf X}_{[\widetilde{\Omega_3},:]}$ from the received signals ${\bf Y}$
+\item
+Secondly, we subtract the index set $\Omega_3$ of the MTDs cancellated in the current iteration from the index set $\Omega_1$ of MTDs to be decoded in the following iterations, updated as $\Omega_1=\{\Omega_1\setminus \Omega_3\}$
+\item
+Meanwhile, we obtain the index set of MTDs that are already subtracted in the previous iterations, denoted as $\Lambda=\{\Omega_0\setminus \Omega_1\}$
+\item
+Thirdly, we update the measurement matrix as ${\bf H}={{\bf H}_0}_{[:,\{[KN_t]\setminus\widetilde{\Lambda}\}]}$, where ${\bf H}_0\in\mathbb{C}^{N_r \times (K N_t)}$ is the input channel matrix, $\widetilde{\Lambda}$ denotes the MAPs' index of MTDs indexed by $\Lambda$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proposed IDS-AMP Detector at the BS}
+\begin{itemize}
+\item
+{\bf Why does the "Interference cancellation module" help to improve the data decoding performance?}
+\item
+Since the sparsity level in the next iteration is reduced with constant dimension $N_r$ of the observations (i.e., the number of receive antennas at the BS), the proposed IDS-AMP detector is capable of achieving the improved decoding performance by using the aforementioned interference cancellation module.
+
+\item
+{\bf Is the "Decoding quality judgement module" necessary?}
+\item
+Yes, it prevents the error propagation in the SIC processing
+\end{itemize}
+\end{frame}
+
+\section{Performance Evaluation}
+\begin{frame}
+\frametitle{Simulation Setup}
+\begin{itemize}
+\item
+An extensive simulation investigation is carried out to evaluate the MTDs' activity detection error rate (ADER), the symbol error rate (SER), and the bit error rate (BER) of the proposed massive access solution
+\item
+The ADER is defined as
+\begin{equation}\label{eq:postTotal}
+\begin{array}{l}
+{\rm ADER}=\dfrac{E_m+E_f}{K},
+\end{array}
+\end{equation}
+where $E_m$ is the number of active MTDs missed to be detected, $E_f$ is the number of inactive MTDs falsely detected to be active
+\item
+The SER is defined as
+\begin{equation}\label{eq:postTotal}
+\begin{array}{l}
+{\rm SER}=\dfrac{JE_m+E_{\rm symbol}}{J K_a},
+\end{array}
+\end{equation}
+where $E_{\rm symbol}$ is the number of error symbols of the detected active MTDs, and $J K_a $ is the total number of symbols transmitted by $K_a$ active MTDs within one frame
+\item
+The BER is defined as
+\begin{equation}\label{eq:postTotal}
+\begin{array}{l}
+{\rm BER}\!=\!\dfrac{\eta J E_m +E_{\rm MED}+E_{\rm QAM}}{\eta J K_a },
+\end{array}
+\end{equation}
+where $E_{\rm MED}$ and $E_{\rm QAM}$ are the overall error numbers of media modulated bits and of quadrature amplitude modulated bits for detected active MTDs within one frame, respectively, and $\eta J K_a$ is the total bits transmitted by $K_a$ active MTDs
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Simulation Setup}
+\begin{itemize}
+\item
+The number of MTDs is $K=500$ with $K_a=50$ active MTDs, where each MTD adopts $N_{\rm RF}=2$ RF mirrors for media modulation and 4-QAM ($M=4$), the throughput is $\eta=N_{\rm RF}+{\rm log_2}M=4$ bpcu
+\item
+The number of receive antennas is $N_r=256$, the maximum iteration number is set to $T_0=15$, and the Rayleigh MIMO channel model is considered, and the frame length $J$ is set to 12
+\item
+{\bf SE of DS-AMP algorithm}
+\item
+The number of Monte Carlo simulations is $N_{\rm MC}=500$, the maximum number of iterations is $T_{\rm SE}=50$, and the terminal threshold is $\varepsilon=10^{-5}$. Note that since we can obtain the {\it a posteriori} estimation of the media modulation signals ${\bf x}_{k,j}$, $\forall k,j$, in each Monte Carlo simulation, the ADER, BER, and SER of the theoretical SE can be calculated in the same way as those in the DS-AMP algorithm, and then averaged over all the Monte Carlo simulations
+\item
+{\bf Coded scenario}
+\item
+We consider the Turbo coding with 1/3 rate and 12 tail bits. The length of the data packet is $L=120$ with the length of the signature sequence being $L_s=20$. \textcolor{black}{Hence, after channel encoding, the length of the data packet is $L'=3L+12=372$ and the frame length is $J=L'/ \eta=93$ for coded media modulation based mMTC.} Finally, $\overline{N}$ is set to 5
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Benchmarks}
+\begin{itemize}
+\item
+{\bf Benchmark 1}: LMMSE multi-user detector for a traditional uplink mMIMO system, where $K_a$ single-antenna users (after the grant-based scheduling) adopting 16-QAM (for achieving the same throughput 4 bpcu) is supported by mMIMO BS with $N_r=256$ receive antennas
+\item
+{\bf Benchmark 2}: The StrOMP algorithm is used for activity detection and the SIC-SSP algorithm is used for data detection, where the terminal threshold $P_{\rm th}$ for the StrOMP algorithm is set to 1.5
+\item
+{\bf Benchmark 3}: A modified DS-AMP algorithm without executing the min-max normalization, where the activity detection method is $\{k|[\widehat{\bf a}]_k>0.5\}$, $\forall k\in[K]$
+\item
+{\bf AMP}: Conventional AMP algorithm, where the sparsity level is $\lambda=\frac{K_a}{K}$ and the noise variance $\sigma_w^2$ are perfectly known in advance, and the {\it a prior} probability is replaced by $p\left({\left[{{\bf x}_{k,j}}\right]_i}\right)=(1-\lambda)\delta\left({\left[{{\bf x}_{k,j}}\right]_i}\right)+\frac{\lambda}{M}\sum\limits_{s\in\mathbb{S}}\delta\left({\left[{{\bf x}_{k,j}}\right]_i-s}\right)$
+\item
+{\bf TLSSCS}: The cutting-edge TLSSCS algorithm, where the scaling factor $\alpha=4$
+\item
+{\bf PIA-MSMP}: The state-of-the-art PIA-MSMP algorithm with the perfectly known sparsity level
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance of the Proposed DS-AMP Algorithm}
+\begin{figure}[t]
+\vspace{-8mm}
+\centering
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRPe}
+        \includegraphics[width=4cm,height=4cm]{Fig/SNRPe.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRSER}
+        \includegraphics[width=4cm,height=4cm]{Fig/SNRSER.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRBER}
+        \includegraphics[width=4cm,height=4cm]{Fig/SNRBER.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\centering
+\setlength{\abovecaptionskip}{-1mm}
+\captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={Fig. 5},labelsep=period}
+\caption{Performance comparison of different solutions versus SNR: (a) ADER performance comparison; (b) SER performance comparison; (c) BER performance comparison. }
+\label{fig:SNR}
+\vspace{-5mm}
+\end{figure}
+\begin{itemize}
+\item
+The proposed DS-AMP algorithm outperforms the TLSSCS algorithm, the PIA-MSMP algorithm, and benchmark 2 in terms of ADER, SER, and BER performance
+\item
+Our proposed DS-AMP algorithm outperforms the conventional AMP algorithm in ADER, SER, and BER, thanks to the exploitation of the doubly structured sparsity
+\item
+The proposed DS-AMP algorithm outperform benchmark 3 at lower SNR (i.e., 0 dB$\sim$2 dB), which verifies the effectiveness of the proposed min-max normalization
+\item
+We observe that the SE offers a good tightness compared with the proposed DS-AMP algorithm in ADER, SER, and BER performance
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance of the Proposed DS-AMP Algorithm}
+\begin{figure}[h]
+\vspace{-8mm}
+\centering
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRPe}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/TPe.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRSER}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/TSER.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRBER}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/TBER.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\centering
+\setlength{\abovecaptionskip}{-1mm}
+\captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={Fig. 6},labelsep=period}
+\caption{Performance comparison of different solutions versus the numbers of time slots $J$ within a frame at SNR~$=$~5 dB: (a) ADER performance comparison; (b) SER performance comparison; (c) BER performance comparison. }
+\label{fig:SNR}
+\vspace{-5mm}
+\end{figure}
+\begin{itemize}
+\item
+Owing to the exploitation of the structured sparsity in the time domain, it can be seen that the advantage of the proposed DS-AMP algorithm over other algorithms in ADER performance becomes more obvious upon increasing $J$
+\item
+If $J$ is small (i.e., $J<5$), we can obtain improved BER and SER performance with the improvement of ADER performance
+\item
+If $J$ is large (i.e., $J>9$), the BER and SER performance almost stay unaltered against different $J$ due to the unchanged perfect ADER performance
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Performance of the Proposed DS-AMP Algorithm}
+\begin{figure}[h]
+\centering
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRPe}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/SPe.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRSER}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/SSER.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRBER}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/SBER.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\centering
+\setlength{\abovecaptionskip}{-1mm}
+\captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={Fig. 7},labelsep=period}
+\caption{Performance comparison of different solutions versus the sparsity level $\lambda=\frac{K_a}{K}$, given $K=500$ and SNR~$=$~3 dB: (a) ADER performance comparison; (b) SER performance comparison; (c) BER performance comparison. }
+\label{fig:SNR}
+\vspace{-5mm}
+\end{figure}
+\begin{itemize}
+\item
+The proposed DS-AMP algorithm outperforms the conventional AMP algorithm, the TLSSCS algorithm, the PIA-MSMP algorithm, and benchmark 2 in ADER, SER, and BER performance
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance of the Proposed DS-AMP Algorithm}
+\begin{figure}[h]
+\centering
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRPe}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/NRPe.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRSER}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/NRSER.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.33\linewidth}
+        \centering
+\label{fig:SNRBER}
+        \includegraphics[width=4.3cm,height=4.3cm]{Fig/NRBER.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\centering
+\setlength{\abovecaptionskip}{-1mm}
+\captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={Fig. 8},labelsep=period}
+\caption{Performance comparison of different solutions versus the numbers of receive antennas $N_r$ at SNR~$=$~5 dB: (a) ADER performance comparison; (b) SER performance comparison; (c) BER performance comparison. }
+\label{fig:SNR}
+\vspace{-5mm}
+\end{figure}
+\begin{itemize}
+\item
+Similar conclusion as observed in Fig. 7 can be obtained
+\item
+In particular, both Fig. 7 and Fig. 8 verify the superiority and robustness of the proposed DS-AMP algorithm under different system parameters, i.e., the sparsity level or the number of receive antennas, in typical IoT scenarios
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance of the Proposed DS-AMP Algorithm}
+\begin{figure}[h]
+%\vspace{-7mm}
+\centering
+\begin{minipage}[t]{\linewidth}
+\centering
+\label{fig:IPe}
+\includegraphics[width=4.5cm]{Fig/IPe.eps}\\%benchmark
+\end{minipage}%
+\centering
+\setlength{\abovecaptionskip}{-0.3mm}
+\captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={Fig. 9},labelsep=period}
+\caption{Performance of the proposed DS-AMP algorithm versus the maximum iteration number $T_0$.}
+\label{fig:I}
+%\vspace{-10mm}
+\end{figure}
+\begin{itemize}
+\item
+We find that the ADER and BER performance of the proposed DS-AMP algorithm converges fast at various SNRs (usually requires less than 15 iterations), which indicates we can adopt the maximum iteration number $T_0=15$ for Algorithm 1
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance of the Proposed DS-AMP Algorithm}
+\begin{table}[!t]
+\vspace{-10mm}
+\scriptsize
+\centering
+\captionsetup{font = {normalsize, color = {black}}, labelsep = period} %, singlelinecheck = on, justification = raggedright
+\caption*{Table I: Computational complexity comparison of different algorithms for uncoded media modulation based mMTC}
+%\begin{tabular}{|c|c|c|}
+\begin{threeparttable}
+\begin{tabular}{|p{2.8cm}|p{3cm}|p{6cm}|p{1.5cm}|p{1.5cm}|}
+%\toprule
+\Xhline{1.2pt}
+\multicolumn{2}{|c|}{\multirow{2}*{{\bf Algorithms}}} & \multirow{2}*{{\bf Computational complexity}}& \multicolumn{2}{|c|}{{\bf Complex-valued multiplications\tnote{1}}}  \\%
+\cline{4-5}
+\multicolumn{2}{|c|}{~} & ~& $N_r=128$ &$N_r=256$  \\%
+%\midrule
+\Xhline{1.2pt}
+%\multirow{3}*{DAD}
+\multicolumn{2}{|c|}{Benchmark 1} & $\mathcal{O}(JN_rK_a+2N_r{K_a}^2+{K_a}^3)$ &$0.84\times10^6$ & $1.56\times10^6$\\
+\hline%\cline{2-5}
+\multicolumn{2}{|c|}{DS-AMP} &${\cal O}[T_0JKN_t(\frac{5}{2}N_r+|\mathbb{S}|_c+\frac{1}{4})]$ & $1.17\times10^8$ & $2.32\times10^8$\\
+\hline
+\multicolumn{2}{|c|}{AMP}&${\cal O}[T_0JKN_t(\frac{5}{2}N_r+|\mathbb{S}|_c+\frac{1}{4})]$ &$1.17\times10^8$ & $2.32\times10^8$\\
+\hline
+\multicolumn{2}{|c|}{Benchmark 3} &${\cal O}[T_0JKN_t(\frac{5}{2}N_r+|\mathbb{S}|_c+\frac{1}{4})]$  &$1.17\times10^8$ & $2.32\times10^8$\\
+\hline%\cline{2-5}
+%\cline{2-5}
+\multicolumn{2}{|c|}{TLSSCS} & $\mathcal{O}\{(JN_rK_a+2N_r{K_a}^2+{K_a}^3)+(K_a+1)[{N_r}^2(KN_t+J)+N_rJKN_t]+\sum\nolimits_{s=1}^{K_a+1}[{N_r}^2+2N_r(sN_t)^2+(sN_t)^3]\}$& $2.14\times10^9$ & $7.53\times10^9$\\
+%\cline{2-5}
+\hline
+\multicolumn{2}{|c|}{PIA-MSMP} & $\mathcal{O}\{3JK_aN_r(N_t+1)+(K_a+1)[{N_r}^2(KN_t+J)+N_rJKN_t]+\sum\nolimits_{s=1}^{K_a}[{N_r}^2+2N_r(sN_t)^2+(sN_t)^3]\}$&$2.12\times10^9$ & $7.50\times10^9$\\
+\hline
+\multicolumn{2}{|c|}{Benchmark 2} &${\cal O}\{K_aJKN_tN_r+\sum\nolimits_{s=1}^{K_a}[JN_r(s+2s^2+2(sN_t)^2)+J(s^3+(sN_t)^3)]+\sum\nolimits_{s=1}^{K_a}[JN_r(s+2s^2+2(sN_t)^2)+J(s^3+(sN_t)^3)]\}$  &$4.82\times10^9$ & $8.16\times10^9$\\
+\hline
+%\multicolumn{2}{|c|}{Oracle LMMSE} & $\mathcal{O}(JN_rK_a+2N_r{K_a}^2+{K_a}^3)$ &$0.84\times10^6$ & $1.56\times10^6$\\
+%\hline%\cline{2-5}
+%~& Benchmark 1 & $\mathcal{O}(JN_rK_a+2N_r{K_a}^2+{K_a}^3)$&0.01&0.02 \\
+\Xhline{1.2pt}
+\end{tabular}
+\begin{tablenotes}
+\scriptsize
+\item[1] The order of complex-valued multiplications is obtained under parameters $J=12$, $N_t=4$, $K=500$, $K_a=50$, $T_0=15$, $|\mathbb{S}|_c=4$.
+\end{tablenotes}
+\end{threeparttable}
+%\vspace{-8mm}
+\end{table}
+\begin{itemize}
+\item
+The complexity of the DS-AMP algorithm scales linearly with the number of receive antennas $N_r$
+\item
+The computational complexities of both TLSSCS and PIA-MSMP algorithms can be approximately proportional to the square of $N_r$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance of the Proposed IDS-AMP Scheme}
+\begin{itemize}
+\item
+{\bf Benchmark 4}: The proposed DS-AMP algorithm adopting uncoded media modulation and a hard decision (i.e., perform a hard decision according to the output signal ${\bf X}\in\mathbb{C}^{KN_t\times J}$ from {\bf Algorithm 1} to get the demodulated binary bits)
+\item
+{\bf Benchmark 5}: The proposed DS-AMP algorithm adopting coded media modulation and soft decision, while the processing of interleaving/deterleaving and SIC is not adopted
+\item
+{\bf Benchmark 6}: The proposed DS-AMP algorithm adopting coded media modulation, interleaving/deinterleaving, and soft decision, while the SIC processing is not adopted
+\item
+{\bf Benchmark 7}: The proposed IDS-AMP scheme except that the proposed decoding quality judgement is removed and let $\Omega_3$ equal $\Omega_2$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance of the Proposed IDS-AMP Scheme}
+\begin{figure}[h]
+\vspace{-8mm}
+\centering
+\subfigure[]{
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+\label{fig:SNRSERcoded}
+        \includegraphics[width=4.6cm]{Fig/SNRSERCoded.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\subfigure[]{
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+\label{fig:SNRBERcoded}
+        \includegraphics[width=4.6cm]{Fig/SNRBERCoded.eps}\\%benchmark
+        %\vspace{0.02cm}
+    \end{minipage}%
+}%
+\centering
+\setlength{\abovecaptionskip}{-1mm}
+\captionsetup{font={footnotesize}, singlelinecheck = off, justification = raggedright,name={Fig. 10},labelsep=period}
+\caption{Performance of the proposed SIC-based massive access solution in comparison with the benchmarks: (a) SER performance comparison; (b) BER performance comparison.}
+\label{fig:SNRcoded}
+%\vspace{-6mm}
+\end{figure}
+\begin{itemize}
+\item
+The worst performance is achieved by benchmark 4, which indicates that the necessity in adopting the channel coding and soft decoding for the improving data decoding performance
+\item
+The superiority of benchmark 6 over benchmark 5 verifies the effectiveness of the proposed BICMM in overcoming the spatial-selective fading channels among different media modulation signals
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Performance of the Proposed IDS-AMP Scheme}
+\begin{itemize}
+\item
+The superiority of benchmark 7 over benchmark 6 in high SNR regime (i.e., larger than -2 dB) verifies the effectiveness of SIC processing
+\item
+Benchmark 7 is observed to be inferior to benchmark 5 in low SNR regime (i.e., -3.5 dB$\sim$-2.5 dB), since the SIC at low SNR can degrade the performance
+\item
+The superiority of IDS-AMP scheme over benchmark 7 verifies the data decoding gain achieved by the proposed decoding quality judgement module
+\end{itemize}
+\end{frame}
+
+\section{Conclusions}
+\begin{frame}
+\frametitle{Conclusions}
+\begin{itemize}
+\item
+{\bf Uncoded media modulation based mMTC}
+\item
+The proposed DS-AMP algorithm reliably tackles the DADD problem, and outperforms the state-of-the-art algorithms
+\item
+The SE theoretically characterizes the DS-AMP algorithm
+\item
+{\bf Coded media modulation based mMTC}
+\item
+The developed BICMM scheme is effective 
+\item
+The SIC-based IDS-AMP scheme, including a dedicated data packet and an IDS-AMP detector, improves the data decoding performance
+\end{itemize}
+\end{frame}
+
+\section{References}
+\begin{frame}
+\frametitle{References}
+\begin{thebibliography}{15}
+\bibitem{WCNC}
+L. Qiao and Z. Gao, ``Joint active device and data detection for massive MTC relying on spatial modulation," in {\em 2020 IEEE Wireless Communications and Networking Conference Workshops (WCNCW)}, Seoul, Korea (South), 2020, pp. 1-6.
+
+\bibitem{BWang1}
+B. Wang, L. Dai, T. Mir, and Z. Wang, ``Joint user activity and data detection based on structured compressive sensing for NOMA," {\em IEEE Commun. Lett.,} vol. 20, no. 7, pp. 1473-1476, Jul. 2016.
+
+\bibitem{YangDU1}
+Y. Du \textit{et al.}, ``Block-sparsity-based multiuser detection for uplink grant-free NOMA," {\em IEEE Trans. Wireless Commun.,} vol. 17, no. 12, pp. 7894-7909, Dec. 2018.
+
+\bibitem{Profshim2}
+B. K. Jeong, B. Shim, and K. B. Lee, ``MAP-based active user and data detection for massive machine-type communications," {\em IEEE
+Trans. Veh. Technol.,} vol. 67, no. 9, pp. 8481-8494, Sept. 2018.
+
+\bibitem{AMP-AUD}
+C. Wei, H. Liu, Z. Zhang, J. Dang, and L. Wu, ``Approximate message passing-based joint user activity and data detection for NOMA," {\em IEEE Commun. Lett.,} vol. 21, no. 3, pp. 640-643, Mar. 2017.
+
+\bibitem{BWang2}
+B. Wang, L. Dai, Y. Zhang, T. Mir, and J. Li, ``Dynamic compressive sensing-based multi-user detection for uplink grant-free NOMA," {\em IEEE Commun. Lett.,} vol. 20, no. 11, pp. 2320-2323, Nov. 2016.
+\end{thebibliography}
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+\begin{thebibliography}{15}
+\bibitem{YangDU2}
+Y. Du, B. Dong, Z. Chen \textit{et al.}, ``Efficient multi-user detection for uplink grant-free NOMA: Prior-information aided adaptive compressive sensing perspective," {\em IEEE J. Select. Areas Commun.,} vol. 35, no. 12, pp. 2812-2828, Jul. 2017.
+
+\bibitem{TWOLEVEL}
+X. Ma, J. Kim, D. Yuan, and H. Liu, ``Two-level sparse structure based compressive sensing detector for uplink spatial modulation with massive connectivity," {\em IEEE Commun. Lett.,} vol. 23, no. 9, pp. 1594-1597, Sept. 2019.
+
+\bibitem{MBMMUD3}
+L. Qiao, J. Zhang, Z. Gao, S. Chen, and L. Hanzo, ``Compressive sensing based massive access for IoT relying on media modulation aided
+machine type communications," {\em IEEE Trans. Veh. Technol.}, vol. PP, no. PP, Jul. 2020.
+
+\bibitem{MBMMUD4}
+X. Ma, S. Guo, and D. Yuan, ``Improved compressed sensing-based joint user and symbol detection for media-based modulation-enabled massive machine-type communications," {\em IEEE Access}, vol. 8, pp. 70058-70070, 2020.
+
+\bibitem{Gao}
+Z. Gao, L. Dai, Z. Wang, S. Chen, and L. Hanzo, ``Compressive-sensing based multiuser detector for the large-scale SM-MIMO uplink," {\em IEEE Trans. Veh. Technol.,} vol. 65, no. 10, pp. 1860-1865, Feb. 2017.
+%Donoho,AMP-SM,AMP-AUD
+\bibitem{AMP-SM}
+X. Meng, S. Wu, L. Kuang, D. Huang, and J. Lu, ``Multi-user detection for spatial modulation via structured approximate message passing," {\em IEEE Commun. Lett.,} vol. 20, no. 8, pp. 1527-1530, Aug. 2016.
+\end{thebibliography}
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+\begin{thebibliography}{15}
+\bibitem{MBMMUD1}
+L. Zhang, M. Zhao, and L. Li, ``Low-complexity multi-user detection for MBM in uplink large-scale MIMO systems," {\em IEEE Commun. Lett.,} vol. 22, no. 8, pp. 1568-1571, Aug. 2018.
+
+\bibitem{MBMMUD2}
+B. Shamasundar, S. Jacob, L. N. Theagarajan, and A. Chockalingam, ``Media-based modulation for the uplink in massive MIMO systems," {\em IEEE
+Trans. Veh. Technol.,} vol. 67, no. 9, pp. 8169-8183, Sept. 2018.
+\end{thebibliography}
+\end{frame}
+
+\begin{frame}
+ \begin{center}
+   \huge Thanks for your attention! \\ Q \& A
+ \end{center}
+\end{frame}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
